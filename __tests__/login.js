@@ -14,24 +14,21 @@ describe(
     })
 
     test('Submit form with valid data', async () => {
-      await page.click('[href="/register"]');
 
       await page.waitForSelector('form');
-      await page.type('#name', 'Ricky');
-      await page.type('#lastName', 'Franky');
-      await page.type('#userName', 'MisoPruebas123');
-      await page.type('#password', 'szechuanSauce');
 
-      await page.click('#register');
-      await page.waitForSelector('.alert-success');
-      const html = await page.$eval('.alert-success', el => el.innerHTML);
-
-      expect(html).toBe('Registration successful');
+      await page.type('#userName','MisoPruebas123');
+      await page.type('#password','szechuanSauce');
+      await sleep(2000)
+      await page.click('#login');
+      await sleep(2000)
+      await page.screenshot({path: 'clickbd.png',fullPage: true})
     }, timeout);
- },
+  },
   timeout
 )
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
   }
+
